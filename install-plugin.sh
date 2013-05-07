@@ -84,7 +84,7 @@ if [ -d "$PLUGIN_RELPATH" ]; then
     exit 2
 fi
 
-#TODO make this more flexible:
+#TODO make this more flexible: don't hardcode media-gen!
 SUBMODULE_PATH=media-gen/"$PLUGIN_RELPATH"/shared
 MSG="installation requires to \`git add\` a submodule at path: $SUBMODULE_PATH
 continue? ([y]/n): "
@@ -104,6 +104,7 @@ if [ "$YN" = n ]; then
 fi
 
 mkdir "$PLUGIN_RELPATH"
+#TODO cd to top or repo
 cd ..
 git submodule add "$REPO_URL" "$SUBMODULE_PATH"
 cd "$SUBMODULE_PATH"

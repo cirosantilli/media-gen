@@ -43,6 +43,8 @@ the recommended method for programatic graph generation is `python matplotlib`
 
 # media-gen plugin
 
+## rationale
+
 there are many different ways to generate media, for example:
 
 - matplotlib
@@ -85,7 +87,9 @@ each *media-gen plugin* must have the following properties:
     - make changes outside of the plugin dir
 
 - if you `cd "./media-gen/plugins/$NAME/" && make` after installation this will generate all the media of the plugin
-    and place it in the toplevel of the plugin under a dir called `out`, for ex: `./media-gen/plugins/$NAME/out/`
+    and place it in the toplevel of the plugin directly under a dir called `out`, for ex: `./media-gen/plugins/$NAME/out/`
+
+    note that currently subdirs of `out` are not supported: all files must be put directly under `out`.
 
     try to write a makefile which only makes files for which source changed reducing compilation time
 
