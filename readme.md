@@ -19,11 +19,17 @@ the recommended method for programatic graph generation is `python matplotlib`
 
 # media-gen plugin
 
-since there may be many different ways to generate media,
-it would be impractical to ship them all on a single template,
+there are many different ways to generate media, for example:
+
+- matplotlib
+- plplot
+- gnuplot
+- etc ...
+
+therefore it would be impractical to ship them all on a single template,
 so a plugin architecture has been developed.
 
-each plugin will be called a *media-gen plugin*
+each of those methods will be encapsulated in a *media-gen plugin*
 
 therefore this repo by itself is useless without a *media-gen plugin*
 
@@ -34,9 +40,9 @@ what this repo does is to factor out the common boilerplate such as:
 
 ## interface
 
-each *media-gen plugin* is simply:
+each *media-gen plugin* must have the following properties:
 
-- a git repository whose names stars with the prefix `media-gen-plugin-`, ex: `media-gen-plugin-matplotlib`
+- be a git repository whose names stars with the prefix `media-gen-plugin-`, ex: `media-gen-plugin-matplotlib`
 
 - the submodule will be put under: `./media-gen/$NAME/shared/`, where `$NAME` is an arbitrary name
     ( but which should reflect what the plugin does for your own sanity...)
