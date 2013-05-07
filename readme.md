@@ -10,11 +10,15 @@ this should be added as a submodule on an empty dir of your main repo as:
 
     mkdir -p "$DIRNAME"
     git submodule add https://github.com/cirosantilli/media-gen "$DIRNAME"/shared
+    cd "$DIRNAME"/shared
+    ./install.sh
 
 where `$DIRNAME` is arbitrary, but `media-gen` seems like a good choice to us.
 
-and then you can commit to add the submodule permanently:
+and then you should add the generated files and  commit to add the submodule permanently:
 
+    cd ..
+    git add *
     git commit -m 'added media-gen to repo'
 
 note that as explained in [this section](#media-gen-plugin), you will need to

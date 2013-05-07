@@ -8,18 +8,20 @@ set -e # stop execution if one command returns != 0
 BNAME="$( basename "$( pwd )" )"
 cd ..
 
-FS=( makefile .gitignore install-plugin.sh )
+LNOUTS=( makefile .gitignore install-plugin.sh )
 
-for F in "${FS[@]}"; do
+for F in "${LNOUTS[@]}" plugins; do
     if [ -e "$F" ]; then
-        echo "FILE ALREADY EXISTS. INSTALLATION ABORTED: $f"
+        echo "FILE ALREADY EXISTS. INSTALLATION ABORTED: $F"
         exit 1
     fi
 done
 
-for F in "${FS[@]}"; do
+for F in "${LNOUTS[@]}"; do
     ln -s "$BNAME"/"$F" "$F"
 done
+
+mkdir plugins
 
 echo 'INSTALLATION FINISHED. CONSIDER ADDING GENERATED FILES TO PROJECT WITH: `git add`'
 exit 0
