@@ -23,7 +23,13 @@ all:
 	@echo $(ERASE_MSG)
 
 clean:
-	for d in plugins/*; do if [ -d "$$d" ]; then cd "$$d" && make clean && cd - ; fi; done
+	for d in plugins/*; do \
+		if [ -d "$$d" ]; then \
+			cd "$$d" ;\
+				make clean ;\
+			cd - ;\
+		fi ;\
+	done
 	rm -rf "$(OUT_DIR)"
 	@echo "REMOVED DIRS: $(OUT_DIR)"
 	@echo $(ERASE_MSG)
