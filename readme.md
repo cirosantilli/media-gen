@@ -24,7 +24,7 @@ and then you should add the generated files and  commit to add the submodule per
 note that as explained in [this section](#media-gen-plugin), you will need to
 actually install some plugins before this is of any use.
 
-Check out [this section](known-stable-media-gen-plugins) to find existing plugins.
+Check out [this section](#known-stable-media-gen-plugins) to find existing plugins.
 
 # in and out
 
