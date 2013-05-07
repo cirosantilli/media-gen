@@ -70,6 +70,8 @@ else
     fi
 fi
 
+PLUGIN_RELPATH=plugins/"$DIRNAME"
+
 #there must be no args left
 if [ $# -gt 0 ]; then
     echo "too many arguments"
@@ -77,13 +79,14 @@ if [ $# -gt 0 ]; then
     exit 2
 fi
 
-if [ -d "$DIRNAME" ]; then
+if [ -d "$PLUGIN_RELPATH" ]; then
     echo "DIRECTORY ALREADY EXISTS, PLEASE CHOOSE ANOTHER NAME: $DIRNAME"
     exit 2
 fi
 
-SUBMODULE_PATH=media-gen/"$DIRNAME"/shared
-MSG="installation requires to create a submodule at path: $SUBMODULE_PATH
+#TODO make this more flexible:
+SUBMODULE_PATH=media-gen/"$PLUGIN_RELPATH"/shared
+MSG="installation requires to \`git add\` a submodule at path: $SUBMODULE_PATH
 continue? ([y]/n): "
 echo -n "$MSG"
 while true; do
@@ -100,7 +103,7 @@ if [ "$YN" = n ]; then
     exit 1
 fi
 
-mkdir "$DIRNAME"
+mkdir "$PLUGIN_RELPATH"
 cd ..
 git submodule add "$REPO_URL" "$SUBMODULE_PATH"
 cd "$SUBMODULE_PATH"

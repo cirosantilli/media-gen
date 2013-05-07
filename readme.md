@@ -2,6 +2,26 @@ this is a method to generate media such as images programtically
 
 it is meant to me compatible with text projects such as latex or html
 
+# installation
+
+this should be added as a submodule on an empty dir of your main repo as:
+
+    DIRNAME=media-gen
+
+    mkdir -p "$DIRNAME"
+    git submodule add https://github.com/cirosantilli/media-gen "$DIRNAME"/shared
+
+where `$DIRNAME` is arbitrary, but `media-gen` seems like a good choice to us.
+
+and then you can commit to add the submodule permanently:
+
+    git commit -m 'added media-gen to repo'
+
+note that as explained in [this section](#media-gen-plugin), you will need to
+actually install some plugins before this is of any use.
+
+Check out [this section](known-stable-media-gen-plugins) to find existing plugins.
+
 # in and out
 
 this **must not** contain media that is not generated programtically such as
@@ -60,16 +80,14 @@ each *media-gen plugin* must have the following properties:
     - touch the git index with commands like `git add` or `git commit`.
     - make changes outside of the plugin dir
 
-- if you `cd "./media-gen/$NAME/" && make && cd ..` after installation this will generate all the media of the plugin
-    and place it in `./media-gen/out/`
-
-    therefore `out` is a reserved name and no media plugin may use it
+- if you `cd "./media-gen/plugins/$NAME/" && make` after installation this will generate all the media of the plugin
+    and place it in the toplevel of the plugin under a dir called `out`, for ex: `./media-gen/plugins/$NAME/out/`
 
     try to write a makefile which only makes files for which source changed reducing compilation time
 
-    it is not necessary nor useful to implemet `make clean`
-
     **DO NOT PUT ANYTHING INSIDE `out` SINCE IT WILL BE DELETED BY `make clean`!!!**
+
+- in the same way of the above rule, `make clean` shall erase the `out` dir and all of its contents.
 
 ## uninstall
 
