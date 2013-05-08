@@ -91,6 +91,13 @@ each *media-gen plugin* must have the following properties:
 
     note that currently subdirs of `out` are not supported: all files must be put directly under `out`.
 
+    all files under `out` will be automatically symlinked with the same basename to the `./media-gen/out` directory
+    where they can be used from the project.
+
+    this means that if more than one file has the exact same basename,
+    one will overwrite the other even if they come from different plugins
+    so make sure you only use each basename only once!
+
     try to write a makefile which only makes files for which source changed reducing compilation time
 
     **DO NOT PUT ANYTHING INSIDE `out` SINCE IT WILL BE DELETED BY `make clean`!!!**
