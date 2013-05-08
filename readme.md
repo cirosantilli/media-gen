@@ -68,6 +68,7 @@ what this repo does is to factor out the common boilerplate such as:
 
 - all *media-gen plugins* will be made with a single make
 - the `install.sh` script helps on the installation of media-gen plugins
+
 ## install plugin with media-gen
 
 the process is completelly automated
@@ -89,7 +90,7 @@ this may be a good design choice if you are only going to use one single plugin 
 
     cd "$(git rev-parse --show-toplevel)"
     mkdir -p "$EMPTY_DIR"
-    git add submodule "$PLUGIN_REPO_URL" "$EMPTY_DIR"
+    git add submodule "$PLUGIN_REPO_URL" "$EMPTY_DIR"/shared
     cd "$EMPTY_DIR"/shared
     ./install.sh
 
@@ -101,11 +102,16 @@ this will add a submodule to your git project
 
 to understand why this is useful in a minimalistic example start with:
 
-    git clone --recursive 
+    git clone https://github.com/cirosantilli/media-gen-test-min
 
 and then install the followin plugin:
 
-either manually or witht media-gen
+    https://github.com/cirosantilli/media-gen-test-min
+
+either [manually](install-plugin-without-media-gen) or with [media-gen](install-plugin-with-media-plugin)
+
+this is just a minimalistic example to test and understand media-gen. For serious projects,
+start out with more complete templates like this latex template: https://github.com/cirosantilli/latex-template
 
 ## interface
 
