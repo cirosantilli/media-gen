@@ -1,6 +1,11 @@
-this is a method to generate media such as images programtically
+a standard interface for projects that generate media such as images
 
-it is meant to me compatible with text projects such as latex or html
+it is meant to me compatible with book projects such as latex or html
+
+as any standardization, this:
+
+- reduces user confusion over different standars
+- allows to automate stuff
 
 # installation
 
@@ -63,6 +68,44 @@ what this repo does is to factor out the common boilerplate such as:
 
 - all *media-gen plugins* will be made with a single make
 - the `install.sh` script helps on the installation of media-gen plugins
+## install plugin with media-gen
+
+the process is completelly automated
+
+do:
+
+    install-plugin.sh
+
+and see the help
+
+## install plugin without media-gen
+
+media-gen plugins can be used without media gen.
+
+this may be a good design choice if you are only going to use one single plugin in your project.
+
+    EMPTY_DIR="media-gen"
+    PLUGIN_REPO_URL="https://github.com/cirosantilli/media-gen-plugin-matplotlib"
+
+    cd "$(git rev-parse --show-toplevel)"
+    mkdir -p "$EMPTY_DIR"
+    git add submodule "$PLUGIN_REPO_URL" "$EMPTY_DIR"
+    cd "$EMPTY_DIR"/shared
+    ./install.sh
+
+where `$EMPTY_DIR` is any empty directory
+
+this will add a submodule to your git project
+
+## examples
+
+to understand why this is useful in a minimalistic example start with:
+
+    git clone --recursive 
+
+and then install the followin plugin:
+
+either manually or witht media-gen
 
 ## interface
 
@@ -104,13 +147,14 @@ each *media-gen plugin* must have the following properties:
 
 - in the same way of the above rule, `make clean` shall erase the `out` dir and all of its contents.
 
+
 ## uninstall
 
 to uninstall a plugin:
 
-- remove any submodules under its tree. Unfortunatelly, there is no currently convenient automatic way of doing this.
+- remove the submodule created at installation
 
-- remove the entire dir.
+- remove the empty dir in which the module was installed
 
 # known stable media-gen plugins
 
