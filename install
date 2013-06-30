@@ -8,7 +8,7 @@ set -e # stop execution if one command returns != 0
 BNAME="$( basename "$( pwd )" )"
 cd ..
 
-LNOUTS=( makefile .gitignore install-plugin.sh )
+LNOUTS=( makefile .gitignore install-plugin )
 
 for F in "${LNOUTS[@]}" plugins; do
     if [ -e "$F" ]; then

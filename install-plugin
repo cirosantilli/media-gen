@@ -106,4 +106,4 @@ mkdir "$PLUGIN_RELPATH"
 cd "$(git rev-parse --show-toplevel)"
 git submodule add "$REPO_URL" "$SUBMODULE_PATH"
 cd "$SUBMODULE_PATH"
-./install.sh
+./install

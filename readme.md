@@ -16,7 +16,7 @@ this should be added as a submodule on an empty dir of your main repo as:
     mkdir -p "$DIRNAME"
     git submodule add https://github.com/cirosantilli/media-gen "$DIRNAME"/shared
     cd "$DIRNAME"/shared
-    ./install.sh
+    ./install
 
 where `$DIRNAME` is arbitrary, but `media-gen` seems like a good choice to us.
 
@@ -67,7 +67,7 @@ therefore this repo by itself is useless without a *media-gen plugin*
 what this repo does is to factor out the common boilerplate such as:
 
 - all *media-gen plugins* will be made with a single make
-- the `install.sh` script helps on the installation of media-gen plugins
+- the `install` script helps on the installation of media-gen plugins
 
 ## install plugin with media-gen
 
@@ -75,7 +75,7 @@ the process is completelly automated
 
 do:
 
-    install-plugin.sh
+    install-plugin
 
 and see the help
 
@@ -86,17 +86,21 @@ media-gen plugins can be used without media gen.
 this may be a good design choice if you are only going to use one single plugin in your project.
 
     EMPTY_DIR="media-gen"
-    PLUGIN_REPO_URL="https://github.com/cirosantilli/media-gen-plugin-matplotlib"
+    PLUGIN_REPO_URL="https://github.com/cirosantilli/media-gen-plugin-test-min"
 
     cd "$(git rev-parse --show-toplevel)"
     mkdir -p "$EMPTY_DIR"
     git add submodule "$PLUGIN_REPO_URL" "$EMPTY_DIR"/shared
     cd "$EMPTY_DIR"/shared
-    ./install.sh
+    ./install
 
 where `$EMPTY_DIR` is any empty directory
 
-this will add a submodule to your git project
+this will add a submodule to your git project and generate some files inside "$EMPTY_DIR"
+
+to finish installation, `git add` the generated files and
+
+    git commit -am 'added test-min media-gen plugin'
 
 ## examples
 
@@ -122,7 +126,7 @@ each *media-gen plugin* must have the following properties:
 - the submodule will be put under: `./media-gen/$NAME/shared/`, where `$NAME` is an arbitrary name
     ( but which should reflect what the plugin does for your own sanity...)
 
-- it contains an executable script `./install.sh` which installs the plugin.
+- it contains an executable script `./install` which installs the plugin.
 
     This script typically does things like:
 
